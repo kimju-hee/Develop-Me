@@ -2,10 +2,10 @@ package com.example.Develop_Me.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import java.util.Set;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,15 +19,15 @@ import lombok.Setter;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "GROUP")
-public class Group {
+@Table(name = "RECURRING")
+public class Recurring {
     @Id
-    private Long groupId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long recurringId;
 
-    @Column(length = 45)
-    private String groupName;
+    @Column(length = 10)
+    private String recurringType;
 
-    @OneToMany(mappedBy = "category")
-    private Users users;
-
+    @Column(length = 100)
+    private String recurringInformation;
 }
