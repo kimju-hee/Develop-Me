@@ -1,7 +1,7 @@
 package com.example.Develop_Me.dto;
 
 
-import com.example.Develop_Me.entity.Group;
+import com.example.Develop_Me.entity.Type;
 import com.example.Develop_Me.entity.Todo;
 import com.example.Develop_Me.entity.Users;
 import java.time.LocalDate;
@@ -16,16 +16,16 @@ public class TodoDto {
     private String todoText;
     private boolean checked;
     private LocalDate todoDate;
-    private Group group;
+    private Type type;
     private Users users;
 
     @Builder
-    public TodoDto(Long todoId, String todoText, boolean checked, LocalDate todoDate, Group group, Users users){
+    public TodoDto(Long todoId, String todoText, boolean checked, LocalDate todoDate, Type type, Users users){
         this.todoId = todoId;
         this.todoText = todoText;
         this.checked = checked;
         this.todoDate = todoDate;
-        this.group = group;
+        this.type = type;
         this.users = users;
     }
 
@@ -35,7 +35,7 @@ public class TodoDto {
                 .todoText(todoText)
                 .checked(checked)
                 .todoDate(todoDate)
-                .group(group)
+                .type(type)
                 .users(users)
                 .build();
     }

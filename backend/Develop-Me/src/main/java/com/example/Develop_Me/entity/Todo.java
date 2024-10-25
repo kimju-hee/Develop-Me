@@ -39,8 +39,8 @@ public class Todo {
     private LocalDate todoDate;
 
     @ManyToOne
-    @JoinColumn(name = "groupId")
-    private Group group;
+    @JoinColumn(name = "typeId")
+    private Type type;
 
     @ManyToOne
     @JoinColumn(name = "userId")

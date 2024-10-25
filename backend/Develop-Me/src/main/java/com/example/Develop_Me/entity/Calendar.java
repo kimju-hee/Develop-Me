@@ -35,8 +35,8 @@ public class Calendar {
     private LocalDate calendarDate;
 
     @ManyToOne
-    @JoinColumn(name = "groupId")
-    private Group group;
+    @JoinColumn(name = "typeId")
+    private Type type;
 
     @ManyToOne
     @JoinColumn(name = "userId")

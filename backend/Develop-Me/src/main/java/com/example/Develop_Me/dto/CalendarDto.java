@@ -1,7 +1,7 @@
 package com.example.Develop_Me.dto;
 
 import com.example.Develop_Me.entity.Calendar;
-import com.example.Develop_Me.entity.Group;
+import com.example.Develop_Me.entity.Type;
 import com.example.Develop_Me.entity.Recurring;
 import com.example.Develop_Me.entity.Users;
 import java.time.LocalDate;
@@ -18,16 +18,16 @@ public class CalendarDto {
     private Long calendarId;
     private String calendarName;
     private LocalDate calendarDate;
-    private Group group;
+    private Type type;
     private Users usres;
     private Recurring recurring;
 
-    public CalendarDto(Long calendarId, String calendarName, LocalDate calendarDate, Group group, Users usres,
+    public CalendarDto(Long calendarId, String calendarName, LocalDate calendarDate, Type type, Users usres,
                        Recurring recurring) {
         this.calendarId = calendarId;
         this.calendarName = calendarName;
         this.calendarDate = calendarDate;
-        this.group = group;
+        this.type = type;
         this.usres = usres;
         this.recurring = recurring;
     }

@@ -3,31 +3,35 @@ package com.example.Develop_Me.entity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import java.util.Set;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "GROUP")
-public class Group {
+@Table(name = "TYPE")
+public class Type {
     @Id
-    private Long groupId;
+    private Long typeId;
 
     @Column(length = 45)
-    private String groupName;
+    private String typeName;
 
-    @OneToMany(mappedBy = "category")
+    @Column(length = 10)
+    private String typeGroup;
+
+    @ManyToOne
+    @JoinColumn(name = "userId")
     private Users users;
+
 
 }
