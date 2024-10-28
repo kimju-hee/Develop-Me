@@ -25,7 +25,13 @@ public class Category {
     @OneToMany(mappedBy = "category")
     private Set<Users> users;
 
-    
 
+    public Category(Long cateId) {
+        this.cateId = cateId;
+    }
 
+    public Category(Long cateId, String cateName) {
+        this.cateId = cateId;
+        this.cateName = cateName;
+    }
 }
