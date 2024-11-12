@@ -18,10 +18,10 @@ public class WebSecurityConfig {
                         .requestMatchers("/", "/home").permitAll()
                         .requestMatchers("/signup").permitAll() // 회원가입 페이지 접근 허용
                         .requestMatchers("/admin/**").hasRole("ADMIN")
-                        .anyRequest().authenticated() // 다른 요청은 인증 필요
+                        .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
-                        .loginPage("/login") // 로그인 페이지 설정
+                        .loginPage("/api/users/kakao/login")
                         .permitAll()
                 )
                 .logout(logout -> logout

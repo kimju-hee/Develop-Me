@@ -1,0 +1,5 @@
+kakao:
+  token_url: https://kapi.kakao.com/v2/oauth/token
+  user_url: https://kapi.kakao.com/v2/user/me
+  client_id: 88cb44222bc46b60fcb4c43599798bb5
+  redirect_uri: http://localhost:8080/main
