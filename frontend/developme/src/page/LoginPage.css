@@ -1,105 +1,129 @@
-body {
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-color: #f5f5f5;
+.page {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
 }
 
-.container {
-  display: flex;
-  width: 100vw;
-  height: 100vh;
-  border: 1px solid #ccc;
-  background-color: white;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.cover_image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(45deg, #F6EBFF, #FF9494);
 }
 
-.image-section {
-  flex: 0.9;
-  display: flex;
-  background: linear-gradient(45deg, #F6EBFF, #FF9494);
-  justify-content: center;
-  align-items: center;
-}
-
-.image-section img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: cover;
+#site_logo {
+    max-width: 100%;
+    max-height: 100%;
 }
 
 .divider {
-  width: 1px;
-  background-color: #ccc;
+    width: 1px;
+    background-color: #ccc;
 }
 
-.form-section {
-  flex: 1;
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  margin-left: 10rem;
+.section {
+    flex: 1;
+    flex-direction: column;
+    display: flex;
+    justify-content: flex-start;
+    padding: 2rem;
+    padding-left: 100px;
 }
 
-.oauth {
-  width: 342px;
-  height: 3rem;
-  margin-top: 1rem;
-  margin-bottom: 4rem;
+#display_signup{
+    margin-left: auto;
 }
 
-
-/* 임시사용이미지 이므로 교체 필요 + margin-right로 임시로 명시 */
-.oauth-image {
-  width: 50px;
-  height: 50px;
-  margin-right: 50px;
+.span_basis {
+    font-weight: 600;
+    color: #94969A;
+    font-size: 1rem;
 }
 
-.login-message1{
-  margin-bottom: 1.5rem;
-  color:#666;
+#signup_button {
+    border: none;
+    background-color: transparent;
+    box-shadow: none;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    color: #553BF1;
 }
 
-.login-container{
-  display: flex;
-  align-items: center;
-  gap: 20px;
+#display_main_message {
+    margin-top: 125px;
+    font-weight: 900;
 }
 
-label {
-  margin-bottom: 8px;
-  font-weight: bold;
-  font-size : 1.2rem;
+.oauth_section {
+    margin-bottom: 40px;
 }
 
-input {
-  padding: 10px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  border: 1px solid #ccc;
-  border-radius: 45px;
-  font-size: 1.2rem;
+#oauth_kakao_login {
+    height: 50px;
+    width: 50px;
+    border-radius: 100%;
+    border: none;
+    background-color: black;
+    margin-right: 25px;
 }
 
-.forget-and-login-button{
-  margin-top: 0.5rem;
-  padding: 0rem;
+#oauth_github_login {
+    height: 50px;
+    width: 50px;
+    border-radius: 100%;
+    border: none;
+    background-color: black;
+    margin-right: 25px;
 }
 
-.button-gradient {
-  padding: 10px;
-  width: 17rem;
-  background: linear-gradient(90deg, #F6EBFF, #FF9494);
-  color: black;
-  border: none;
-  border-radius: 45px;
-  cursor: pointer;
-  font-size: 1.2rem;
+#oauth_google_login {
+    height: 50px;
+    width: 50px;
+    border-radius: 100%;
+    border: none;
+    background-color: black;
+    margin-right: 25px;
+}
+
+#login_basis {
+    display: flex;
+}
+
+#input_box {
+    display: flex;
+}
+
+.input_group {
+    margin-top: 30px;
+    margin-bottom: 20px;
+    margin-right: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.noti_input {
+    font-size : 1.2rem;
+    font-weight: bold;
+}
+
+.input_bar {
+    padding: 10px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 45px;
+    font-size: 1.2rem;
+}
+
+#login_button {
+    padding: 10px;
+    width: 17rem;
+    background: linear-gradient(90deg, #F6EBFF, #FF9494);
+    color: black;
+    border: none;
+    border-radius: 45px;
+    cursor: pointer;
+    font-size: 1.2rem;
 }
