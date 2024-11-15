@@ -1,0 +1,98 @@
+header {
+    height: 70px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    color: white;
+    padding: 10px 20px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+.maintitle{
+    margin-left: 65px;
+    flex : 1;
+    color: black;
+}
+
+* {
+    box-sizing:border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 16px;
+}
+
+.container {
+    position: relative;
+    height: 100vh
+}
+
+nav {
+    color : black;
+    flex : 1;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul {
+    width : 50rem;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+}
+
+nav li {
+    padding : 1rem;
+}
+
+nav a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #ff6347;
+}
+
+.myinfo {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+}
+
+.logout_button{
+    padding: 0.3rem;
+    width: 5rem;
+    background: white;
+    color: black;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.welcome_me {
+    width : 12rem;
+    height : 3rem;
+    font-size: 1rem;
+    color : white;
+    background-color: #FF553E;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 36px;
+    margin-right: 2rem;
+    margin-left: 2rem;
+}
