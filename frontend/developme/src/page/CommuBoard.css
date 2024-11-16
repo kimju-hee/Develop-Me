@@ -1,0 +1,4 @@
+.formclass {
+    display: flex;
+    flex-direction: row;
+}

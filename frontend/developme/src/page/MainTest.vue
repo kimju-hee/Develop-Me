@@ -1,46 +1,47 @@
 <template>
-    <div class = "page">
-        <div class = "cover_image"><img id = "site_logo" src="../assets/images/site-logo3.png" alt="이미지" /></div>
-        <div class = "divider"></div>
-        <div class = "section">
-            <div id = "display_signup"><span class = "span_basis">계정이 없어요! <button id = "signup_button">회원가입!</button></span></div>
-            <h1 id = "display_main_message">로그인하기</h1>
-            <div class="oauth_section">
-                <!-- Kakao OAuth 버튼 -->
-                <button id="oauth_kakao_login" @click="loginWithKakao">
-                <img src="../assets/images/임시사용이미지.png" alt="Kakao OAuth로 로그인" />
-                </button>
-                <!-- GitHub OAuth 버튼 -->
-                <button id="oauth_github_login" @click="loginWithGitHub">
-                <img src="../assets/images/임시사용이미지.png" alt="GitHub OAuth로 로그인" />
-                </button>
-                <!-- Google OAuth 버튼 -->
-                <button id="oauth_google_login" @click="loginWithGoogle">
-                <img src="../assets/images/임시사용이미지.png" alt="Google OAuth로 로그인" />
-                </button>
-            </div>
-            <span class = "span_basis">또는 이메일과 비밀번호로 로그인</span>
+    <header>
+        <div class="maintitle">
+            <h1>Develop Me!</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">투두 리스트</a></li>
+                <li><a href="#">캘린더</a></li>
+                <li><a href="comunitypage">커뮤니티</a></li>
+                <li><a href="#">로드맵</a></li>
+                <li><a href="#">알고리즘</a></li>
+                <li><a href="mypage">마이페이지</a></li>
+            </ul>
+        </nav>
+        <div class="myinfo">
+            <button @click="logout_function" class="logout_button">로그아웃</button>
+            <div class="welcome_me">{{ 사용자명 }}님 환영합니다.</div>
+        </div>
+    </header>
 
-            <form @submit.prevent="handleLogin">
-                <div id="input_box">
-                <div class="input_group">
-                    <label class="noti_input" for="usermail">이메일</label>
-                    <input class="input_bar" type="text" id="usermail" v-model="email" placeholder="Type here" required />
-                </div>
-                <div class="input_group">
-                    <label class="noti_input" for="password">비밀번호</label>
-                    <input class="input_bar" type="password" id="password" v-model="password" placeholder="Type here" required />
-                </div>
-                </div>
-
-                <button id="login_button" type="submit">로그인</button>
+    
+    <div id = "content">
+        <div id = "sidebar">
+            <form id = "search_form">
+                <input id = "search_input" placeholder="검색">
             </form>
+            <div id = "sidebar_menu">
+                <ul id = "ul_menu">메뉴</ul>
+                <li class="sidebar_li" 
+                    :class="{ active: selectedMenu === 0 }" 
+                    @click="selectMenu(0)">전체 글 보기</li>
+                <li class="sidebar_li" 
+                    :class="{ active: selectedMenu === 1 }" 
+                    @click="selectMenu(1)">내가 쓴 모집글</li>
+                <li class="sidebar_li" 
+                    :class="{ active: selectedMenu === 2 }" 
+                    @click="selectMenu(2)">내가 지원한 글</li>
+            </div>
+        </div>
+        <div id = "main_content">
             
         </div>
-
-
     </div>
-
 </template>
 
 
@@ -48,52 +49,34 @@
 
 <script>
 export default {
-data() {
-    return {
-    email: '',
-    password: ''
-    };
-},
-methods: {
-    loginWithKakao() {
-        const kakaoAuthUrl = 'https://kauth.kakao.com/oauth/authorize?client_id=YOUR_CLIENT_ID&redirect_uri=YOUR_REDIRECT_URI&response_type=code';
-        window.location.href = kakaoAuthUrl;
+    data() {
+        return {
+            selectedMenu: null // 선택된 메뉴 항목의 인덱스를 저장
+        };
     },
-    loginWithGitHub() {
-        const githubAuthUrl = 'https://github.com/login/oauth/authorize?client_id=YOUR_CLIENT_ID&redirect_uri=YOUR_REDIRECT_URI&scope=SCOPE';
-        window.location.href = githubAuthUrl;
-    },
-    loginWithGoogle() {
-        const googleAuthUrl = 'https://accounts.google.com/o/oauth2/auth?client_id=YOUR_CLIENT_ID&redirect_uri=YOUR_REDIRECT_URI&response_type=code&scope=SCOPE';
-        window.location.href = googleAuthUrl;
-    },
-    handleLogin() {
-    // API 요청 보내기
-    fetch('/api/users/login', {
-        method: 'POST',
-        headers: {
-        'Content-Type': 'application/json'
+    methods: {
+        logout_function() {
+            fetch('/api/users/logout', { method: 'POST' })
+                .then(response => {
+                    if (response.ok) {
+                        this.$router.push('/logout');
+                    } else {
+                        alert('로그아웃 실패');
+                    }
+                })
+                .catch(error => {
+                    console.error('로그아웃 오류:', error);
+                    alert('로그아웃 중 오류 발생');
+                });
         },
-        body: JSON.stringify({ email: this.email, password: this.password })
-    })
-    .then(response => {
-        if (response.ok) {
-        return response.json();
-        } else {
-        throw new Error('로그인에 실패했습니다.');
+        selectMenu(index) {
+            this.selectedMenu = index; // 선택된 메뉴의 인덱스를 설정
         }
-    })
-    .then(data => {
-        console.log('로그인 성공:', data);
-    })
-    .catch(error => {
-        console.error('오류:', error);
-        alert('로그인 중 오류가 발생했습니다.');
-    });
     }
-}
 };
 </script>
+
+
 
 
 
