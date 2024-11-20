@@ -16,22 +16,24 @@ public class OfferDto {
     private String title;
     private LocalDate postDate;
     private String postText;
-    private Users users;
-    private Category category;
-    private Hashtag hashtag;
+    private boolean postStatus;
+    private Long userId;
+    private Long categoryId;
+    private Long hashtagId;
 
     @Builder
-    public OfferDto(Long offerId, String title, LocalDate postDate, String postText, Category category, Hashtag hashtag, Users users){
+    public OfferDto(Long offerId, String title, LocalDate postDate, String postText, boolean postStatus, Long userId, Long categoryId, Long hashtagId) {
         this.offerId = offerId;
-        this.users = users;
         this.title = title;
         this.postDate = postDate;
         this.postText = postText;
-        this.category = category;
-        this.hashtag = hashtag;
+        this.postStatus = postStatus;
+        this.userId = userId;
+        this.categoryId = categoryId;
+        this.hashtagId = hashtagId;
     }
 
-    public Offer toEntity() {
+    public Offer toEntity(Users users, Category category, Hashtag hashtag) {
         return Offer.builder()
                 .offerId(offerId)
                 .users(users)
@@ -40,6 +42,16 @@ public class OfferDto {
                 .category(category)
                 .hashTag(hashtag)
                 .postText(postText)
+                .postStatus(postStatus)
                 .build();
+    }
+
+    public void validateForUpdate() {
+        if (title == null || title.isBlank()) {
+            throw new IllegalArgumentException("제목은 비어 있을 수 없습니다.");
+        }
+        if (postText == null || postText.isBlank()) {
+            throw new IllegalArgumentException("본문은 비어 있을 수 없습니다.");
+        }
     }
 }

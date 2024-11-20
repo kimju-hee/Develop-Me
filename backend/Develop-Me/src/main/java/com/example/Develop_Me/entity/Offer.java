@@ -53,6 +53,9 @@ public class Offer {
     @JoinColumn(name = "hashtagId")
     private Hashtag hashTag;
 
-
+    public void update(String title, String postText){
+        this.title = title;
+        this.postText = postText;
+    }
 
 }
