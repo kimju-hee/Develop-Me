@@ -38,6 +38,9 @@ public class Offer {
     @Column(length = 45)
     private String postText;
 
+    @Column(length = 45)
+    private boolean postStatus;
+
     @ManyToOne
     @JoinColumn(name = "userId")
     private Users users;
