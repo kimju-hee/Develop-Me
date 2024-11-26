@@ -19,49 +19,85 @@
         </div>
     </header>
 
-    <main>
-        <div class="ranking-container">
-            <h2>이번주 랭킹</h2>
-            <div class="medals">
-                <div class="medal">
-                    <img src="gold_medal.png" alt="Gold Medal" />
-                    <span>1위</span>
+    <div id="content">
+        <div class="calendar_container">
+            <div class="calendar_header">
+                <div class="header_title">
+                    <span>{{ monthNames[month] }} {{ year }}</span>
                 </div>
-                <div class="medal">
-                    <img src="silver_medal.png" alt="Silver Medal" />
-                    <span>2위</span>
-                </div>
-                <div class="medal">
-                    <img src="bronze_medal.png" alt="Bronze Medal" />
-                    <span>3위</span>
+                <div class="header_controls">
+                    <button @click="previousMonth">이전</button>
+                    <button @click="nextMonth">다음</button>
                 </div>
             </div>
-            <div class="tree-container">
-                <img src="tree_image.png" alt="Tree" class="tree-image" />
-                <!-- 숫자 버튼 -->
-                <button class="tree-button" style="top: 10%; left: 20%;">1</button>
-                <button class="tree-button" style="top: 15%; left: 30%;">2</button>
-                <button class="tree-button" style="top: 20%; left: 40%;">3</button>
-                <button class="tree-button" style="top: 25%; left: 50%;">4</button>
-                <button class="tree-button" style="top: 30%; left: 60%;">5</button>
-                <button class="tree-button" style="top: 35%; left: 70%;">6</button>
-                <button class="tree-button" style="top: 40%; left: 80%;">7</button>
-                <button class="tree-button" style="top: 45%; left: 20%;">8</button>
-                <button class="tree-button" style="top: 50%; left: 30%;">9</button>
-                <button class="tree-button" style="top: 55%; left: 40%;">10</button>
-                <button class="tree-button" style="top: 60%; left: 50%;">11</button>
-                <button class="tree-button" style="top: 65%; left: 60%;">12</button>
-                <button class="tree-button" style="top: 70%; left: 70%;">13</button>
-                <button class="tree-button" style="top: 75%; left: 80%;">14</button>
-                <button class="tree-button" style="top: 80%; left: 20%;">15</button>
-                <button class="tree-button" style="top: 85%; left: 30%;">16</button>
-                <button class="tree-button" style="top: 90%; left: 40%;">17</button>
-                <button class="tree-button" style="top: 95%; left: 50%;">18</button>
-                <button class="tree-button" style="top: 100%; left: 60%;">19</button>
-                <button class="tree-button" style="top: 105%; left: 70%;">20</button>
+            <div class="calendar_grid">
+                <div class="day_name" v-for="day in dayNames" :key="day">{{ day }}</div>
+                <div class="calendar_day" 
+                    v-for="(day, index) in calendarDays" 
+                    :key="index" 
+                    :class="{ 'today': isToday(day), 'empty': day === null }"
+                    @click="selectDate(day)">
+                    <div v-if="day" class="day_number">{{ day }}</div>
+                    <!-- 일정 개수 표시 -->
+                    <div v-if="day && schedules[`${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`]">
+                        <span class="schedule_count">
+                            {{ schedules[`${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`].length }} 일정
+                        </span>
+                    </div>
+                </div>
             </div>
         </div>
-    </main>
+        <div id="calender_setting">
+            <div id="monthly_plan">
+                <div id="shape_monthly_plan">
+                    <span id="font_monthly_plan">나의 한달 계획</span>
+                </div>
+                <div id="inshape_monthly_plan">
+                    <div class="monthly_plan_category">
+                        <div id="shape_category">
+                            <div id="font_category">CATEGORY</div>
+                        </div>
+                        <div id="monthly_plan_category_list">
+                            <div class="category_list" v-for="catego in category" :key="catego">{{ catego }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="set_plan">
+                <span id="set_plan_focus_day">{{ selectedDate || "날짜를 선택하세요" }}</span>
+                <!-- 일정 추가하기 버튼 -->
+                <button v-if="selectedDate" @click="openModal">일정 추가하기</button>
+
+                <!-- 선택된 날짜의 일정 표시 -->
+                <div v-if="selectedDate && getSchedules(selectedDate).length > 0" id="schedule_list">
+                    <h3>선택된 날짜의 일정</h3>
+                    <ul>
+                        <li v-for="(item, index) in getSchedules(selectedDate)" :key="index">
+                            {{ item.category }}: {{ item.name }}
+                        </li>
+                    </ul>
+                </div>
+                <div v-else-if="selectedDate">
+                    <p>일정이 없습니다.</p>
+                </div>
+            </div>
+
+            <!-- 모달 팝업 -->
+            <div v-if="showModal" class="modal">
+                <div class="modal-content">
+                    <h3>일정 추가하기</h3>
+                    <label>카테고리 선택:</label>
+                    <select v-model="newCategory">
+                        <option v-for="catego in category" :key="catego" :value="catego">{{ catego }}</option>
+                    </select>
+                    <label>일정 이름:</label>
+                    <input v-model="newSchedule" placeholder="일정 이름 입력"/>
+                    <button @click="addSchedule">추가</button>
+                    <button @click="closeModal">닫기</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </template>
 
 
@@ -161,4 +197,4 @@ export default {
 
 
 
-<style scoped src="./MainTest.css"></style>
+<style scoped src="./CalendarPage.css"></style>

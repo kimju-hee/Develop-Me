@@ -1,49 +1,59 @@
-#sidebar {
-    width: 15rem;
-    height: 100vh;
+.ranking-container {
+    padding: 2rem;
+    text-align: center;
+}
+
+.ranking-container h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.medals {
     display: flex;
-    justify-content: flex-start;
-    flex-direction: column;
-    border-right: 1px solid black;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
 }
 
-#search_form {
-    margin-bottom: 40px;
+.medal img {
+    width: 50px;
+    height: 50px;
 }
 
-#search_input {
-    border: none;
-    width: 12rem;
-    height: 2rem;
-    border-radius: 30px;
-    padding: 20px;
+.medal span {
+    display: block;
+    margin-top: 0.5rem;
+    font-weight: bold;
+    font-size: 1.2rem;
 }
 
-#sidebar_menu{
-    padding-left: 20px;
+.tree-container {
+    position: relative;
+    display: inline-block;
 }
 
-#ul_menu{
-    margin-bottom: 30px;
+.tree-image {
+    width: 80%;
+    max-width: 600px;
+    height: auto;
 }
 
-li {
-    list-style-type: none;
-}
-
-.sidebar_li{
-    display: flex;
-    align-items: center;
-    height: 60px;
+.tree-button {
+    position: absolute;
+    background-color: #fff;
+    border: 2px solid #ddd;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 38px;
+    font-weight: bold;
     cursor: pointer;
-    font-weight: 600;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s;
 }
 
-.sidebar_li.active {
-    background-color: orange; /* 주황색 배경 */
-}
-
-#content {
-    display: flex;
-    padding: 1.25rem;
+.tree-button:hover {
+    background-color: #ff6f61;
+    color: #fff;
 }
