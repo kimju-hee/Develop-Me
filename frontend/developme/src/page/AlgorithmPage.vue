@@ -179,4 +179,4 @@ export default {
 
 
 
-<style scoped src="./MyPage.css"></style>
+<style scoped src="./AlgorithmPage.css"></style>

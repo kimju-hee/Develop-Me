@@ -6,10 +6,10 @@
         <nav>
             <ul>
                 <li><a href="#">투두 리스트</a></li>
-                <li><a href="#">캘린더</a></li>
+                <li><a href="calendarpage">캘린더</a></li>
                 <li><a href="communitypage">커뮤니티</a></li>
                 <li><a href="#">로드맵</a></li>
-                <li><a href="#">알고리즘</a></li>
+                <li><a href="algorithmpage">알고리즘</a></li>
                 <li><a href="mypage">마이페이지</a></li>
             </ul>
         </nav>
