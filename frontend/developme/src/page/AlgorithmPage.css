@@ -1,178 +1,93 @@
-.contents {
-    padding: 3rem;
-    padding-top: 1rem;
+.ranking,
+.menu {
+    width: 300px;
+    background-color: #f4f4f4;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
 
-#modify_personal_info{
-    margin: 0;
-    font-size: 3rem;
-    margin-left: 100px;
-}
-
-.info_column{
+.content {
+    flex: 1;
+    padding: 50px;
+    background-color: #fff;
+    overflow-y: auto;
     display: flex;
-    flex-direction: row;
+    align-items: center;
     justify-content: center;
 }
 
-.my_info_box1{
-    margin: 40px;
-    background: #FFB6AC;
-    height: 600px;
-    width: 800px;
-    border-radius: 35px;
-    padding: 50px;
-    padding-top: 30px;
+.medal_image {
+    width: 5rem;
+    height: 5rem;
+    margin-right: 10px;
+    vertical-align: middle;
 }
 
-.my_info_box2{
-    margin: 40px;
-    background: #d6d2d2a8;
-    height: 600px;
-    width: 800px;
-    border-radius: 35px;
-    padding: 50px;
-    padding-top: 30px;
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
-.personal_info_a {
-    font-size: 2rem;
-    font-weight: 900;
+li {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 50px;
 }
 
-.nickname_field {
+.container {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    margin-bottom: 15px;
 }
 
-.user_info{
-    margin-top: 30px;
+#tree {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
 }
 
-label {
-    font-weight: 700;
+.tree-container {
+    position: relative;
+    width: 750px; /* 나무 이미지 크기 (조정 가능) */
+    height: auto;
 }
 
-#nickname {
-    font-weight: 100;
-    background-color: white;
-    padding : 10px;
-    padding-left: 20px;
-    width: 250px;
-    height: 45px;
-    border-radius: 100px;
+#tree {
+    width: 100%;
+    height: auto;
+    display: block;
 }
 
-#field {
-    background-color: white;
-    padding : 10px;
-    padding-left: 20px;
-    width: 250px;
-    height: 45px;
-    border-radius: 8px;
+.grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
 
-#tech {
-    background-color: white;
-    height: 300px;
-    padding: 30px;
-    border-radius: 50px;;
-}
-
-#new_nickname {
-    background-color: white;
-    padding : 10px;
-    padding-left: 20px;
-    width: 250px;
-    height: 45px;
-    border-radius: 100px;
-    border: none;
-    margin-top: 16px;
-    margin-bottom: 16px;
-    font-weight: 100;
-    font-size: 1rem;
-}
-
-#new_field {
-    background-color: white;
-    padding : 10px;
-    padding-left: 20px;
-    width: 250px;
-    height: 45px;
-    border-radius: 8px;
-    border : none;  
-    margin-top: 16px;
-    margin-bottom: 16px;
-    font-weight: 100;
-    font-size: 1rem;
-}
-
-.form_group {
+.cell {
     display: flex;
-    flex-direction: column;
-}
-
-.update_info{
-    margin-top: 30px;
-}
-
-#new_tech {
-    margin: 16px;
-    margin-left: 0;
-    margin-right: 0;
-    border : none;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
     background-color: white;
-    height: 210px;
-    padding: 30px;
-    border-radius: 50px;
-    font-size: 1rem;
-    font-weight: 600;
+    position: absolute;
+    transform: translate(-50%, -50%); /* 좌표를 기준으로 중심 정렬 */
+    width: 55px; /* 스탬프 크기 */
+    height: 55px;
+    text-align: center;
 }
 
-#new_password {
-    background-color: white;
-    padding : 10px;
-    padding-left: 20px;
-    width: 250px;
-    height: 45px;
-    border-radius: 100px;
-    border: none;
-    margin-top: 16px;
-    margin-bottom: 16px;
-    font-weight: 100;
-    font-size: 1rem;
+.day_number {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    position: absolute;
 }
 
-#confirm_password {
-    background-color: white;
-    padding : 10px;
-    padding-left: 20px;
-    width: 250px;
-    height: 45px;
-    border-radius: 100px;
-    border: none;
-    margin-top: 16px;
-    margin-bottom: 16px;
-    font-weight: 100;
-    font-size: 1rem;
-}
-
-#button_form{
-    margin: 80px;   
-    display: flex;
-    flex-direction: row-reverse;
-    margin-top: 20px;
-}
-
-#submit_button {
-    padding: 10px;
-    width: 17rem;
-    background: linear-gradient(90deg, #F6EBFF, #FF9494);
-    color: black;
-    border: none;
-    border-radius: 45px;
-    cursor: pointer;
-    font-size: 1.2rem;
+.stamp {
+    width: 100%;
+    height: 100%;
 }

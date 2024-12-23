@@ -5,7 +5,7 @@
         </div>
         <nav>
             <ul>
-                <li><a href="#">투두 리스트</a></li>
+                <li><a href="todopage">투두 리스트</a></li>
                 <li><a href="calendarpage">캘린더</a></li>
                 <li><a href="communitypage">커뮤니티</a></li>
                 <li><a href="#">로드맵</a></li>
@@ -39,7 +39,29 @@
             </div>
         </div>
         <div id = "main_content">
-            
+            <div class = "top_bar">
+                <div class = "top_bar_buttons">
+                    <button class = "topbarbutton" :class="{ active: selectedTopbarbutton === 1 }" @click="selectTopbarbutton(1)">New</button>
+                    <button class = "topbarbutton" :class="{ active: selectedTopbarbutton === 2 }" @click="selectTopbarbutton(2)">Top</button>
+                    <button class = "topbarbutton" :class="{ active: selectedTopbarbutton === 3 }" @click="selectTopbarbutton(3)">Hot</button>
+                    <button class = "topbarbutton" :class="{ active: selectedTopbarbutton === 4 }" @click="selectTopbarbutton(4)">Closed</button>
+                </div>
+                <button class = "write_post_button">글 작성하기</button>
+            </div>
+            <div class = "bulletin_list">
+                <div class = "bulletin">
+                    <div class = "bulletin_top">
+                        <div class = "bulletin_info">
+                            <span class= "bulletin_writer">작성자 이름</span>
+                            <span class= "bulletin_writing_time">게시글 작성 시간</span>
+                        </div>
+                        <div class = ""></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id = "right_side_bar">
+
         </div>
     </div>
 </template>
@@ -51,7 +73,8 @@
 export default {
     data() {
         return {
-            selectedMenu: null // 선택된 메뉴 항목의 인덱스를 저장
+            selectedMenu: null, // 선택된 메뉴 항목의 인덱스를 저장
+            selectedTopbarbutton: null
         };
     },
     methods: {
@@ -70,7 +93,18 @@ export default {
                 });
         },
         selectMenu(index) {
-            this.selectedMenu = index; // 선택된 메뉴의 인덱스를 설정
+            if (this.selectedMenu === index) {
+                this.selectedMenu = null;
+            } else {
+                this.selectedMenu = index;
+            }
+        },
+        selectTopbarbutton(index) {
+            if (this.selectedTopbarbutton === index) {
+                this.selectedTopbarbutton = null;
+            } else {
+                this.selectedTopbarbutton = index;
+            }
         }
     }
 };

@@ -5,83 +5,74 @@
         </div>
         <nav>
             <ul>
-                <li><a href="todoPage">투두 리스트</a></li>
-                <li><a href="calendarpage">캘린더</a></li>
+                <li><a href="#">투두 리스트</a></li>
+                <li><a href="#">캘린더</a></li>
                 <li><a href="comunitypage">커뮤니티</a></li>
                 <li><a href="#">로드맵</a></li>
-                <li><a href="algorithmpage">알고리즘</a></li>
+                <li><a href="#">알고리즘</a></li>
                 <li><a href="mypage">마이페이지</a></li>
             </ul>
         </nav>
         <div class="myinfo">
             <button @click="logout_function" class="logout_button">로그아웃</button>
-            <div class="welcome_me">{{ 사용자명 }}님 환영합니다.</div>
+            <div class="welcome_me"><!--{{ users.nickname }}-->님 환영합니다.</div>
         </div>
     </header>
 
     <div class="container">
-        <div class="contents">
-            <h2 id="modify_personal_info">정보수정</h2>
-            <div class="info_column">
-                <div class="my_info_box1">
-                    <a class="personal_info_a">내 정보</a>
-                    <div class="user_info">
-                        <div class="nickname_field">
-                            <div class="form_group">
-                                <label for="nickname">닉네임</label>
-                                <p id="nickname">{{ userInfo.nickname }}</p>
-                            </div>
-                            <div class="form_group">
-                                <label for="field">분야</label>
-                                <p id="field">{{ userInfo.field }}</p>
-                            </div>
-                        </div>
-                        <div class="form_group">
-                            <label for="tech">기술 스택</label>
-                            <p id="tech">{{ userInfo.tech }}</p>
-                        </div>
+        <aside v-if="isSidebarVisible" class="ranking">
+            <button @click="toggleSidebar">
+                {{ isSidebarVisible ? '메뉴로 전환' : '랭킹으로 전환' }}
+            </button>
+            <h2>랭킹</h2>
+            <ul>
+                <li>
+                    <img src="../assets/images/임시사용이미지.png" class="medal_image" />
+                    1. 사용자 A
+                </li>
+                <li>
+                    <img src="../assets/images/임시사용이미지.png" class="medal_image" />
+                    2. 사용자 B
+                </li>
+                <li>
+                    <img src="../assets/images/임시사용이미지.png" class="medal_image" />
+                    3. 사용자 C
+                </li>
+            </ul>
+        </aside>
+        <aside v-else class="menu">
+            <button @click="toggleSidebar">
+                {{ isSidebarVisible ? '메뉴로 전환' : '랭킹으로 전환' }}
+            </button>
+            <h2>메뉴</h2>
+            <ul>
+                <li><a href="#">메뉴 1</a></li>
+                <li><a href="#">메뉴 2</a></li>
+                <li><a href="#">메뉴 3</a></li>
+            </ul>
+        </aside>
+
+        <section class="content">
+            <div class="tree-container">
+                <img id="tree" src="../assets/images/Algorythm_tree.png" alt="나무 이미지">
+                <div class="grid">
+                    <div 
+                        v-for="(day, index) in stampedDays" 
+                        :key="index" 
+                        class="cell"
+                        :style="`left: ${day.x}%; top: ${day.y}%;`"
+                    >
+                        <span v-if="!day.isStamped" class="day_number">{{ index + 1 }}</span>
+                        <img 
+                            v-if="day.isStamped" 
+                            src="../assets/images/임시사용이미지.png" 
+                            alt="Stamped" 
+                            class="stamp"
+                        />
                     </div>
                 </div>
-
-                <div class="my_info_box2">
-                    <a class="personal_info_a">내 정보</a>
-                    <form class="update_info">
-                        <div class="nickname_field">
-                            <div class="form_group">
-                                <label for="new_nickname">닉네임</label>
-                                <input type="text" id="new_nickname" v-model="newNickname">
-                            </div>
-                            <div class="form_group">
-                                <label for="new_field">분야</label>
-                                <select id="new_field" v-model="newField">
-                                    <option value="backend">백엔드 개발자</option>
-                                    <option value="frontend">프론트엔드 개발자</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="form_group">
-                            <label for="new_tech">기술 스택</label>
-                            <textarea id="new_tech" v-model="newTech" rows="4"></textarea>
-                        </div>
-                        <div class="nickname_field">
-                            <div class="form-group">
-                                <label for="new_password">변경 비밀번호</label>
-                                <input type="password" id="new_password" v-model="newPassword">
-                            </div>
-                            <div class="form-group">
-                                <label for="confirm_password">비밀번호 확인</label>
-                                <input type="password" id="confirm_password" v-model="confirmPassword">
-                            </div>
-                        </div>
-                    </form>
-                </div>
             </div>
-
-            <form id="button_form" @submit.prevent="updateUserInfo">
-                <button id="submit_button">수정하기</button>
-            </form>
-        </div>
+        </section>
     </div>
 </template>
 
@@ -92,88 +83,51 @@
 export default {
     data() {
         return {
-            userInfo: {
-                nickname: '',
-                field: '',
-                tech: '',
-            },
-            newNickname: '',
-            newField: 'backend',
-            newTech: '',
-            newPassword: '',
-            confirmPassword: '',
+            isSidebarVisible: true,
+            days: [
+                { x: 12, y: 57 }, // 1
+                { x: 23, y: 59 },
+                { x: 35, y: 62 },
+                { x: 48, y: 55 },
+                { x: 60, y: 59 }, // 5
+                { x: 74, y: 60 },
+                { x: 88, y: 55 },
+                { x: 11, y: 44 },
+                { x: 27, y: 46 },
+                { x: 43, y: 43 }, // 10
+                { x: 56, y: 48 },
+                { x: 72, y: 46 },
+                { x: 84, y: 43 },
+                { x: 23, y: 34 },
+                { x: 36, y: 30 }, // 15
+                { x: 54, y: 34 },
+                { x: 68, y: 30 },
+                { x: 44, y: 23 },
+                { x: 60, y: 20 },
+                { x: 50, y: 13 }, // 20
+            ],
+            attendanceData: [
+                false, false, true, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
+            ]
         };
     },
-    created() {
-        this.fetchUserInfo();
-    },
     methods: {
-        // 사용자 정보를 불러오는 함수
-        fetchUserInfo() {
-            fetch('/api/mypage')
-                .then(response => response.json())
-                .then(data => {
-                    this.userInfo = data;
-                    this.newNickname = data.nickname;
-                    this.newField = data.field;
-                    this.newTech = data.tech;
-                })
-                .catch(error => {
-                    console.error('정보 불러오기 오류:', error);
-                    alert('사용자 정보를 불러오는 중 오류 발생');
-                });
-        },
-        // 정보 수정 함수
-        updateUserInfo() {
-            if (this.newPassword !== this.confirmPassword) {
-                alert('비밀번호가 일치하지 않습니다.');
-                return;
-            }
-
-            const updatedInfo = {
-                nickname: this.newNickname,
-                field: this.newField,
-                tech: this.newTech,
-                password: this.newPassword || undefined, // 비밀번호가 있을 때만 보내기
-            };
-
-            fetch('/api/mypage/update', {
-                method: 'PATCH',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(updatedInfo),
-            })
-                .then(response => {
-                    if (response.ok) {
-                        alert('정보가 성공적으로 수정 완료');
-                        this.fetchUserInfo(); // 업데이트된 정보 다시 불러오기
-                    } else {
-                        alert('정보 수정에 실패');
-                    }
-                })
-                .catch(error => {
-                    console.error('정보 수정 오류:', error);
-                    alert('정보 수정 중 오류가 발생했습니다.');
-                });
-        },
-        logout_function() {
-            fetch('/api/users/logout', { method: 'POST' })
-                .then(response => {
-                    if (response.ok) {
-                        this.$router.push('/logout');
-                    } else {
-                        alert('로그아웃 실패');
-                    }
-                })
-                .catch(error => {
-                    console.error('로그아웃 오류:', error);
-                    alert('로그아웃 중 오류 발생');
-                });
+        toggleSidebar() {
+            this.isSidebarVisible = !this.isSidebarVisible;
+        }
+    },
+    computed: {
+        stampedDays() {
+            return this.days.map((day, index) => ({
+                ...day,
+                isStamped: this.attendanceData[index] || false
+            }));
         }
     }
 };
 </script>
+
+
 
 
 

@@ -40,10 +40,93 @@ li {
 }
 
 .sidebar_li.active {
-    background-color: orange; /* 주황색 배경 */
+    background-color: orange;
 }
 
 #content {
     display: flex;
     padding: 1.25rem;
+    gap : 15px;
+}
+
+#main_content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 10px;
+    gap: 35px;
+}
+
+.top_bar {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 8%;
+}
+
+.top_bar_buttons{
+    display: flex;
+    align-items: flex-start;
+    padding-top: 7px;
+    gap: 20px;
+}
+
+.topbarbutton {
+    height: 2rem;
+    border: none;
+    background-color: rgba(128, 128, 128, 0.3);
+    color: white;
+    padding: 5px;
+    font-size: 0.8rem;
+    border-radius: 20px;;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    cursor: pointer;
+}
+
+.topbarbutton.active {
+    background-color: #F48023;
+}
+
+.write_post_button {
+    height: 100%;
+    border: none;
+    background-color: #F48023;
+    padding: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    border-radius: 7px;
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.bulletin_list {
+}
+
+.bulletin {
+    padding: 30px;
+    background-color: white;
+    height: 275px;
+    box-shadow: 6px 6px 15px rgba(0, 0, 0, 0.3);
+    border-radius: 7px;
+}
+
+.bulletin_top {
+    display: flex;
+    flex-direction: row;
+}
+
+.bulletin_info {
+    display: flex;
+    flex-direction: column;
+}
+
+.bulletin_writer {
+    font-size: 1.1rem;
+}
+
+.bulletin_writing_time {
+    font-size: 0.9rem;
+    color: #808080;
 }

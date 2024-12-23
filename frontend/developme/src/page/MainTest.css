@@ -16,7 +16,7 @@
     gap: 60px;
 }
 
-.date{
+.date {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -84,12 +84,65 @@
     font-weight: 600;
     margin-top: 5px;
     margin-bottom: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
 }
 
-.add_task_input{
+.add_task_input {
     margin-top: 10px;
     color: black;
     border: none;
     padding: 10px;
     cursor: pointer;
+}
+
+/* 추가: 모달 스타일 */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* 반투명 배경 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* 다른 요소 위로 올림 */
+}
+
+.modal-content {
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    width: 400px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.modal-content button {
+    background-color: #FFC6C6;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    font-size: 14px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.modal-content button:hover {
+    background-color: #ff9999;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }

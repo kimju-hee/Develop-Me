@@ -8,6 +8,7 @@ import WritePost from '@/page/WritePost.vue'
 import CalendarPage from '@/page/CalendarPage.vue'
 import TodoPage from '@/page/TodoPage.vue'
 import TestPage from '@/page/TestPage.vue'
+import AlgorithmPage from '@/page/AlgorithmPage.vue'
 
 const routes = [
     {
@@ -54,6 +55,11 @@ const routes = [
         path: '/TestPage',
         name: 'TestPage',
         component: TestPage
+    },
+    {
+        path: '/AlgorithmPage',
+        name: 'AlgorithmPage',
+        component: AlgorithmPage
     }
 ]
 
